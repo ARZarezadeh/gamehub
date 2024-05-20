@@ -7,11 +7,11 @@ import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { PlatForm } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
-
 export interface GameQuery {
   genre: Genre | null;
   platform: PlatForm | null;
   sortOrder: string | null;
+  searchText: string;
 }
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       templateColumns={{ base: "1fr", lg: "250px 1fr" }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
